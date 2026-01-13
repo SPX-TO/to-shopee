@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>TO Shopee</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- TOPO -->
+  <div class="topbar">
+    <h1>TO Shopee</h1>
+    <button class="btn-login" onclick="abrirLoginModal()">Entrar</button>
+
+  </div>
+
+  <!-- CONTEÚDO -->
+  <div class="container">
+    
+    <h2>Buscar TO</h2>
+
+    <input
+      id="buscaInput"
+      class="busca-input"
+      placeholder="Digite cidade, TO ou tipo (SOC, HUB, 3PL)"
+    />
+
+    <div id="erro" class="erro"></div>
+    <div id="resultados" class="resultados"></div>
+  </div>
+<!-- MODAL LOGIN -->
+<div id="loginModal" class="modal hidden">
+  <div class="modal-content">
+    <button class="modal-close" onclick="fecharLoginModal()">×</button>
+
+    <h2>Acesso Administrativo</h2>
+
+    <label>E-mail</label>
+    <input id="loginEmail" type="email" placeholder="seu@email.com">
+
+    <label>Senha</label>
+    <input id="loginSenha" type="password" placeholder="••••••••">
+
+    <button class="btn-primary" onclick="loginModal()">Entrar</button>
+
+    <div id="loginModalError" class="login-error"></div>
+  </div>
+</div>
+
+  <!-- RODAPÉ -->
+  <footer>
+    Versão Beta
+  </footer>
+
+  <!-- JS -->
+  <script src="js/tos.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>TO Shopee - Usuários</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+    <div class="logo-area">
+        <svg width="34" height="34" viewBox="0 0 200 50" fill="#FFF">
+            <!-- SEU SVG AQUI -->
+        </svg>
+        <span class="title">TO Shopee</span>
+    </div>
+
+    <button id="logoutBtn" class="logout-btn">Sair</button>
+</header>
+
+<!-- MENU INTERNO -->
+<nav class="adm-menu">
+    <a href="users.html" class="active">Usuários</a>
+    <a href="tos.html">TOs</a>
+    <a href="importar.html">Importar Excel</a>
+</nav>
+
+<!-- CONTEÚDO -->
+<div class="container">
+
+    <div class="header-line">
+        <h2>Gerenciar Usuários</h2>
+        <button class="btn" id="btnNovo">+ Novo Usuário</button>
+    </div>
+
+    <div class="table-card">
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Função</th>
+                    <th>Status</th>
+                    <th style="width:160px;">Ações</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="js/users.js"></script>
+</body>
+</html>

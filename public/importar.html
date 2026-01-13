@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>TO Shopee • Importar Planilha</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/importar.js" defer></script>
+</head>
+
+<body class="admin-page">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="logo-area">
+      <span class="title">TO Shopee</span>
+    </div>
+
+    <button id="logoutBtn" class="btn-login">Sair</button>
+  </header>
+
+  <!-- MENU ADMIN -->
+  <nav class="adm-menu">
+    <a href="tos-admin.html">Gerenciar TOs</a>
+    <span class="disabled">Usuários</span>
+    <a href="importar.html" class="active">Importar Planilha</a>
+  </nav>
+
+  <!-- CONTEÚDO -->
+  <main class="container">
+
+    <div class="form-card">
+      <h3>Importar TOs via Planilha</h3>
+
+      <p class="hint">
+  Envie um arquivo <strong>Excel (.xlsx)</strong> seguindo exatamente o formato:
+</p>
+
+<div class="import-format">
+  tipo | cidade | estado | codigo
+</div>
+
+
+      <label for="excelFile">Arquivo</label>
+      <input
+        type="file"
+        id="excelFile"
+        accept=".xlsx,.xls"
+      />
+
+      <button class="btn-primary" onclick="enviarExcel()">
+        Importar Planilha
+      </button>
+
+      <div id="status" class="hint"></div>
+    </div>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="footer">
+    Versão Beta
+  </footer>
+
+</body>
+</html>

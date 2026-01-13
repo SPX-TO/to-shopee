@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Redefinir Senha - TO Shopee</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="logo-area">
+        <svg width="34" height="34" viewBox="0 0 200 50" fill="#FFF">
+            <!-- seu SVG aqui -->
+        </svg>
+        <span class="title">TO Shopee</span>
+    </div>
+</header>
+
+<div class="container" style="max-width: 400px; margin-top: 2rem;">
+
+    <h2>Redefinir Senha</h2>
+
+    <!-- PASSO 1 - enviar código -->
+    <div id="step1">
+        <p>Digite seu e-mail para receber o código:</p>
+        <input id="email" type="email" placeholder="email@exemplo.com">
+        <button class="btn" onclick="enviarCodigo()">Enviar código</button>
+        <div id="msg1" class="msg"></div>
+    </div>
+
+    <!-- PASSO 2 - validar código -->
+    <div id="step2" style="display:none;">
+        <p>Digite o código enviado no e-mail:</p>
+        <input id="codigo" type="text" placeholder="000000">
+        <button class="btn" onclick="validarCodigo()">Validar código</button>
+        <div id="msg2" class="msg"></div>
+    </div>
+
+    <!-- PASSO 3 - nova senha -->
+    <div id="step3" style="display:none;">
+        <p>Digite sua nova senha:</p>
+        <input id="senha1" type="password" placeholder="Nova senha">
+        <input id="senha2" type="password" placeholder="Repita a nova senha">
+        <button class="btn" onclick="salvarSenha()">Salvar nova senha</button>
+        <div id="msg3" class="msg"></div>
+    </div>
+
+</div>
+
+<script src="js/reset.js"></script>
+</body>
+</html>

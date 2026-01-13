@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>TO Shopee • Administrativo</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script src="js/tos-admin.js" defer></script>
+</head>
+
+<body class="admin-page">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="logo-area">
+      <span class="title">TO Shopee</span>
+    </div>
+
+    <button id="logoutBtn" class="btn-login">Sair</button>
+  </header>
+
+  <!-- MENU ADMIN -->
+  <nav class="adm-menu">
+  <a href="tos-admin.html" class="active">Gerenciar TOs</a>
+  <span class="disabled">Usuários</span>
+  <a href="importar.html">Importar Planilha</a>
+</nav>
+
+
+
+  <!-- CONTEÚDO -->
+  <main class="container">
+
+    <!-- BUSCA ADMIN -->
+    <div class="form-card">
+      <h3>Gerenciar TO</h3>
+      <input
+      id="buscaInput"
+      class="busca-input"
+      placeholder="Digite cidade, TO ou tipo (SOC, HUB, 3PL)"
+    />
+    <div id="adminMsg" class="admin-msg hidden"></div>
+
+      <span id="buscaAdminMsg" class="hint"></span>
+    </div>
+    <!-- CADASTRO -->
+<button class="btn-primary" onclick="abrirModalCriarTO()">
+  + Criar TO
+</button>
+
+    
+
+
+
+    <!-- LISTA -->
+    <div id="listaWrapper" class="form-card hidden">
+  <h3>Resultado da busca</h3>
+  <div id="tos-list"></div>
+</div>
+
+
+  </main>
+
+  <!-- MODAL CRIAR -->
+<div id="modalCriarTO" class="modal hidden">
+  <div class="modal-content">
+
+    <button class="modal-close" onclick="fecharModalCriarTO()">×</button>
+
+    <h3>Criar TO</h3>
+
+    <label>Tipo</label>
+    <select id="novoTipo">
+      <option value="SOC">SOC</option>
+      <option value="HUB">HUB</option>
+      <option value="3PL">3PL</option>
+    </select>
+
+    <label>Cidade</label>
+    <input id="novoCidade" type="text">
+
+    <label>Estado</label>
+    <input id="novoEstado" type="text">
+
+    <label>Código</label>
+    <input id="novoCodigo" type="text">
+
+    <button class="btn-primary" onclick="salvarNovaTO()">
+      Salvar TO
+    </button>
+
+  </div>
+</div>
+
+  <!-- MODAL EDITAR -->
+  <div id="modalEditTO" class="modal hidden">
+    <div class="modal-content">
+
+      <button class="modal-close" onclick="fecharModalTO()">×</button>
+
+      <h3>Editar TO</h3>
+
+      <input type="hidden" id="editToId">
+
+      <label>Tipo</label>
+      <select id="editTipo">
+        <option value="SOC">SOC</option>
+        <option value="HUB">HUB</option>
+        <option value="3PL">3PL</option>
+      </select>
+
+      <label>Cidade</label>
+      <input id="editCidade" type="text">
+
+      <label>Estado</label>
+      <input id="editEstado" type="text">
+
+      <label>Código</label>
+      <input id="editCodigo" type="text">
+
+      <button class="btn-primary" onclick="salvarEdicaoTO()">
+        Salvar alterações
+      </button>
+
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <footer class="footer">
+    Versão Beta
+  </footer>
+
+</body>
+</html>
