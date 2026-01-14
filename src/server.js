@@ -100,6 +100,6 @@ app.listen(PORT, () => {
   console.log("🔥 TO Shopee Server rodando na porta", PORT);
 });
 
-
+//teste
 app.get("/api/search", publicSearchTo);
 
