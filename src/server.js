@@ -72,9 +72,9 @@ app.get("/api/users", authMiddleware([ROLES.SUPER]), listUsers);
 app.post("/api/users", authMiddleware([ROLES.SUPER]), createUser);
 
 // ------------------------------------------------------
-// BOOTSTRAP INICIAL (TEMPORÁRIO)
+// BOOTSTRAP INICIAL (TEMPORÁRIO) - Get
 // ------------------------------------------------------
-app.post("/api/bootstrap", bootstrap);
+app.get("/api/bootstrap", bootstrap);
 
 // ------------------------------------------------------
 // BUSCA PÚBLICA DE TOs (SEM LOGIN)
