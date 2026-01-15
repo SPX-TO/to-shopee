@@ -15,7 +15,12 @@ import {
   publicSearchTo
 } from "./controllers/tosController.js";
 
-import { listUsers, createUser } from "./controllers/userController.js";
+import {
+  listUsers,
+  createUser,
+  bootstrap
+} from "./controllers/userController.js";
+
 import { importExcel } from "./controllers/importController.js";
 
 const app = express();
@@ -67,6 +72,11 @@ app.get("/api/users", authMiddleware([ROLES.SUPER]), listUsers);
 app.post("/api/users", authMiddleware([ROLES.SUPER]), createUser);
 
 // ------------------------------------------------------
+// BOOTSTRAP INICIAL (TEMPORÁRIO)
+// ------------------------------------------------------
+app.post("/api/bootstrap", bootstrap);
+
+// ------------------------------------------------------
 // BUSCA PÚBLICA DE TOs (SEM LOGIN)
 // ------------------------------------------------------
 app.get("/api/tos/public/search", publicSearchTo);
@@ -93,13 +103,11 @@ app.post(
 // ------------------------------------------------------
 // SERVIDOR
 // ------------------------------------------------------
-
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log("🔥 TO Shopee Server rodando na porta", PORT);
 });
 
-//teste
+// teste (mantido como estava)
 app.get("/api/search", publicSearchTo);
-
