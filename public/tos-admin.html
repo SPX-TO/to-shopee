@@ -130,6 +130,22 @@
   <footer class="footer">
     Versão Beta
   </footer>
+<script>
+(function keepAlive() {
+  const min = 4 * 60 * 1000;   // 4 minutos
+  const max = 14 * 60 * 1000;  // 14 minutos
+  const next = Math.floor(Math.random() * (max - min)) + min;
+
+  setTimeout(async () => {
+    try {
+      await fetch("/api/me", { credentials: "include" });
+    } catch (e) {
+      // silêncio total
+    }
+    keepAlive();
+  }, next);
+})();
+</script>
 
 </body>
 </html>
