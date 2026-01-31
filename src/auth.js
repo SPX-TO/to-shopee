@@ -1,6 +1,3 @@
-import db from "./db.js";
-import bcrypt from "bcrypt";
-
 export function login(req, res) {
   const { email, senha } = req.body;
 
@@ -8,17 +5,8 @@ export function login(req, res) {
     return res.status(400).json({ error: "Dados inválidos." });
   }
 
-  // Verifica se o usuário existe e está ativo (continua usando o banco)
-  const user = db
-    .prepare("SELECT * FROM users WHERE email = ? AND active = 1")
-    .get(email);
-
-  if (!user) {
-    return res.status(401).json({ error: "Usuário não encontrado." });
-  }
-
   // ------------------------------------------------------
-  // LOGIN PROVISÓRIO (2 USUÁRIOS COM ROLES)
+  // LOGIN PROVISÓRIO (2 USUÁRIOS, SEM BANCO)
   // ------------------------------------------------------
   const USERS = [
     {
@@ -45,7 +33,6 @@ export function login(req, res) {
   res.cookie(
     "user",
     JSON.stringify({
-      id: user.id,
       role: userConfig.role,
     }),
     {
