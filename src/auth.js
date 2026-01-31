@@ -8,6 +8,7 @@ export function login(req, res) {
     return res.status(400).json({ error: "Dados inválidos." });
   }
 
+  // Verifica se o usuário existe e está ativo (continua usando o banco)
   const user = db
     .prepare("SELECT * FROM users WHERE email = ? AND active = 1")
     .get(email);
@@ -16,17 +17,36 @@ export function login(req, res) {
     return res.status(401).json({ error: "Usuário não encontrado." });
   }
 
-  // LOGIN PROVISÓRIO (DESENVOLVIMENTO)
-  if (senha !== "admin123") {
-    return res.status(401).json({ error: "Senha incorreta." });
+  // ------------------------------------------------------
+  // LOGIN PROVISÓRIO (2 USUÁRIOS COM ROLES)
+  // ------------------------------------------------------
+  const USERS = [
+    {
+      email: process.env.ADMIN_EMAIL_1,
+      password: process.env.ADMIN_PASSWORD_1,
+      role: "SUPER",
+    },
+    {
+      email: process.env.ADMIN_EMAIL_2,
+      password: process.env.ADMIN_PASSWORD_2,
+      role: "ADMIN",
+    },
+  ];
+
+  const userConfig = USERS.find(
+    (u) => u.email === email && u.password === senha
+  );
+
+  if (!userConfig) {
+    return res.status(401).json({ error: "Credenciais inválidas." });
   }
 
-  // COOKIE DE SESSÃO (STRING JSON)
+  // COOKIE DE SESSÃO
   res.cookie(
     "user",
     JSON.stringify({
       id: user.id,
-      role: user.role,
+      role: userConfig.role,
     }),
     {
       httpOnly: true,
