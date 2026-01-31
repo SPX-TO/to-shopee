@@ -17,8 +17,7 @@ import {
 
 import {
   listUsers,
-  createUser,
-  bootstrap
+  createUser
 } from "./controllers/userController.js";
 
 import { importExcel } from "./controllers/importController.js";
@@ -72,11 +71,6 @@ app.get("/api/users", authMiddleware([ROLES.SUPER]), listUsers);
 app.post("/api/users", authMiddleware([ROLES.SUPER]), createUser);
 
 // ------------------------------------------------------
-// BOOTSTRAP INICIAL (TEMPORÁRIO) - Get
-// ------------------------------------------------------
-app.get("/api/bootstrap", bootstrap);
-
-// ------------------------------------------------------
 // BUSCA PÚBLICA DE TOs (SEM LOGIN)
 // ------------------------------------------------------
 app.get("/api/tos/public/search", publicSearchTo);
@@ -109,5 +103,4 @@ app.listen(PORT, () => {
   console.log("🔥 TO Shopee Server rodando na porta", PORT);
 });
 
-// teste (mantido como estava)
-app.get("/api/search", publicSearchTo);
+// (rota de teste removida)
