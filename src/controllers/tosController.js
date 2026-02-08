@@ -55,8 +55,50 @@ export function publicSearchTo(req, res) {
     ORDER BY cidade ASC
   `).all(like, like, like);
 
+  // ------------------------------------------------------
+  // LOG DE USO DA BUSCA (MÉTRICA)
+  // ------------------------------------------------------
+  if (q.length >= 2) {
+    let tipoBusca = "cidade";
+
+    if (/^[A-Z]{2,3}-\d+/i.test(q)) {
+      tipoBusca = "codigo";
+    } else if (q.length <= 3) {
+      tipoBusca = "tipo";
+    }
+
+    db.prepare(`
+      INSERT INTO usage_logs (tipo_busca, termo)
+      VALUES (?, ?)
+    `).run(tipoBusca, q);
+
+    
+  }
+
   res.json(results);
 }
+
+// Relatório de uso (SOMENTE SUPER)
+export function usageReport(req, res) {
+  const total = db.prepare(`
+    SELECT COUNT(*) as total FROM usage_logs
+  `).get();
+
+  const detalhado = db.prepare(`
+    SELECT
+      termo,
+      COUNT(*) as quantidade
+    FROM usage_logs
+    GROUP BY termo
+    ORDER BY quantidade DESC
+  `).all();
+
+  res.json({
+    total: total.total,
+    detalhado
+  });
+}
+
 
 
 

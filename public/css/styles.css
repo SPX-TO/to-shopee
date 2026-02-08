@@ -956,5 +956,9 @@ footer {
 .admin-msg.hidden {
   display: none;
 }
+.alert {
+  text-align: center;
+  margin: 5px 0;
+}
 
 
