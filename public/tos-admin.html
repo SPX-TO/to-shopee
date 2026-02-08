@@ -21,11 +21,29 @@
   </header>
 
   <!-- MENU ADMIN -->
-  <nav class="adm-menu">
-  <a href="tos-admin.html" class="active">Gerenciar TOs</a>
-  <span class="disabled">Usuários</span>
-  <a href="importar.html">Importar Planilha</a>
+<nav class="adm-menu">
+  <a href="/index.html">
+    Voltar Busca
+  </a>
+
+  <a href="/tos-admin.html" class="active">
+    Gerenciar TOs
+  </a>
+
+  <span class="disabled">
+    Usuários
+  </span>
+
+  <a href="/importar.html">
+    Importar Planilha
+  </a>
+
+  <!-- SOMENTE SUPER -->
+  <a href="/relatorio.html" id="btn-relatorio" style="display: none;">
+    Relatório
+  </a>
 </nav>
+
 
 
 
@@ -146,6 +164,18 @@
   }, next);
 })();
 </script>
+<script>
+fetch("/api/me", { credentials: "include" })
+  .then(res => res.json())
+  .then(data => {
+    if (data.logged && data.user.role === "SUPER") {
+      const btn = document.getElementById("btn-relatorio");
+      if (btn) btn.style.display = "inline-block";
+    }
+  })
+  .catch(() => {});
+</script>
+
 
 </body>
 </html>

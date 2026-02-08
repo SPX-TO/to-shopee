@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relatório de Uso - TO Shopee</title>
+
+  <!-- CSS GLOBAL DO SISTEMA -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- MENU ADMIN (MESMO PADRÃO) -->
+  <nav class="adm-menu">
+    <a href="/index.html">Buscar TO</a>
+    <a href="/tos-admin.html">Gerenciar TOs</a>
+    <span class="disabled">Usuários</span>
+    <a href="/importar.html">Importar Planilha</a>
+    <a href="/relatorio.html" class="active">Relatório</a>
+  </nav>
+
+  <main class="container">
+    <h1>Relatório de Uso</h1>
+
+    <p id="total">Carregando...</p>
+    <button id="btn-detalhes">Mais detalhes</button>
+<div id="detalhes" style="display: none;">
+    <table class="tabela">
+      <thead>
+        <tr>
+          <th>TO / Termo</th>
+          <th>Quantidade</th>
+        </tr>
+      </thead>
+      <tbody id="tbody-relatorio"></tbody>
+    </table>
+</div>
+  </main>
+
+  <script>
+    fetch("/api/relatorio/uso", { credentials: "include" })
+      .then(res => {
+        if (!res.ok) throw new Error("Não autorizado");
+        return res.json();
+      })
+      .then(data => {
+        document.getElementById("total").innerText =
+          "Total de buscas: " + data.total;
+
+        const tbody = document.getElementById("tbody-relatorio");
+        tbody.innerHTML = "";
+
+        data.detalhado.forEach(item => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${item.termo}</td>
+            <td>${item.quantidade}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      })
+      .catch(() => {
+        document.querySelector("main").innerHTML =
+          "<p>Acesso não autorizado.</p>";
+      });
+
+      const btn = document.getElementById("btn-detalhes");
+const box = document.getElementById("detalhes");
+
+btn.addEventListener("click", () => {
+  const aberto = box.style.display === "block";
+  box.style.display = aberto ? "none" : "block";
+  btn.innerText = aberto ? "Mais detalhes" : "Ocultar detalhes";
+});
+
+  </script>
+
+</body>
+</html>

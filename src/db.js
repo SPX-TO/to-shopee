@@ -43,5 +43,14 @@ db.exec(`
     codigo TEXT NOT NULL UNIQUE
   );
 `);
+db.exec(`
+  CREATE TABLE IF NOT EXISTS usage_logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    tipo_busca TEXT NOT NULL,
+    termo TEXT NOT NULL
+  );
+`);
+
 
 export default db;

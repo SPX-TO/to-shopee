@@ -6,15 +6,17 @@ import multer from "multer";
 
 import { login, authMiddleware } from "./auth.js";
 import { ROLES } from "./roles.js";
-
 import {
   listTos,
   createTo,
   getTo,
   updateTo,
   deleteTo,
-  publicSearchTo
+  publicSearchTo,
+  usageReport
 } from "./controllers/tosController.js";
+
+
 
 import {
   listUsers,
@@ -85,6 +87,14 @@ app.get("/api/tos/:id", authMiddleware([ROLES.ADMIN, ROLES.SUPER]), getTo);
 app.put("/api/tos/:id", authMiddleware([ROLES.ADMIN, ROLES.SUPER]), updateTo);
 app.delete("/api/tos/:id", authMiddleware([ROLES.ADMIN, ROLES.SUPER]), deleteTo);
 
+// ------------------------------------------------------
+// RELATÓRIO DE USO (SOMENTE SUPER)
+// ------------------------------------------------------
+app.get(
+  "/api/relatorio/uso",
+  authMiddleware([ROLES.SUPER]),
+  usageReport
+);
 // ------------------------------------------------------
 // IMPORTAÇÃO EXCEL (ADMIN / SUPER)
 // ------------------------------------------------------
